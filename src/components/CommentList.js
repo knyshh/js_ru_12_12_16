@@ -15,10 +15,11 @@ export default class CommentsList extends Component {
 
     getBody(){
         const { comments } = this.props;
-        let commentElements =  comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>);
+        let commentElements;
 
         if (!this.state.isOpen) return null
         else if (this.state.isOpen && comments)  {
+            commentElements =  comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>);
             return (
                 <div>
                     <ul>
@@ -30,7 +31,7 @@ export default class CommentsList extends Component {
         else if (this.state.isOpen && !comments) {
             return (
                 <p>
-                    Nesw doesn't have comments;
+                    Nesw doesnt have comments;
                 </p>
             )
         }
