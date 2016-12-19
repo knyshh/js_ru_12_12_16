@@ -13,6 +13,15 @@ export default class CommentsList extends Component {
         });
     };
 
+    getBtn = () => {
+       return(
+           <button onClick = {this.toggleOpenComment}>
+               {this.state.isOpen ? "hide" : "show" } comments
+           </button>
+       )
+    };
+
+
     getBody(){
         const { comments } = this.props;
         let commentElements;
@@ -41,7 +50,8 @@ export default class CommentsList extends Component {
     render() {
         return (
             <ul className="comments__list">
-                <button onClick = {this.toggleOpenComment}>Show Comments</button>
+                {/*<button onClick = {this.toggleOpenComment}>Show Comments</button>*/}
+                {this.getBtn()}
                 {this.getBody()}
             </ul>
         )
