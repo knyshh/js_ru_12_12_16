@@ -1,21 +1,14 @@
 import React, {PropTypes} from 'react'
 import Article from './Article'
 import Chart from './Chart'
+import toggleOpen from '../decorators/accordeon'
 
 export default class ArticleList extends React.Component {
-    state = {
-        openArticleId: null,
-        isClosed: true
-    }
     render() {
         const {articles} = this.props
         const articleElements = articles.map(article =>
             <li key={article.id}>
-                <Article article={article}
-                         isOpen={this.state.openArticleId == article.id}
-                         onClick={this.toggleOpenArticle(article.id)}
-                         closedArticle = {this.state.isClosed}
-                />
+                <Article article={article} />
             </li>)
         return (
             <div>
@@ -28,17 +21,6 @@ export default class ArticleList extends React.Component {
             </div>
         )
     }
-
-    toggleOpenArticle = id => ev => {
-        console.log(this.state.isClosed);
-        this.setState({
-            openArticleId: id,
-            isClosed: !this.state.isClosed
-        })
-    }
-
-
-
 }
 
 ArticleList.defaultProps = {
