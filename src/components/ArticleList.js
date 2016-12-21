@@ -4,15 +4,19 @@ import Chart from './Chart'
 
 export default class ArticleList extends React.Component {
     state = {
-        openArticleId: null
+        openArticleId: null,
+        isClosed: true
     }
     render() {
-        const {articles} = this.props
+        const {articles, isClosed} = this.props
+        console.log('1'+this.state.isClosed);
+        //if (!isClosed) return null
         const articleElements = articles.map(article =>
             <li key={article.id}>
                 <Article article={article}
                          isOpen={this.state.openArticleId == article.id}
                          onClick={this.toggleOpenArticle(article.id)}
+                         closedArticle = {this.toggleOpenArticle(article.id)}
                 />
             </li>)
         return (
@@ -28,12 +32,20 @@ export default class ArticleList extends React.Component {
     }
 
     toggleOpenArticle = id => ev => {
+        console.log(this.state.isClosed);
         this.setState({
-            openArticleId: id
+            openArticleId: id,
+            isClosed: !this.state.isClosed
         })
     }
+
+
+
 }
 
+ArticleList.defaultProps = {
+    articles: []
+}
 ArticleList.propTypes = {
     articles: PropTypes.array.isRequired
 }
