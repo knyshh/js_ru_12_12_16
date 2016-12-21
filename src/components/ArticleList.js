@@ -8,15 +8,13 @@ export default class ArticleList extends React.Component {
         isClosed: true
     }
     render() {
-        const {articles, isClosed} = this.props
-        console.log('1'+this.state.isClosed);
-        //if (!isClosed) return null
+        const {articles} = this.props
         const articleElements = articles.map(article =>
             <li key={article.id}>
                 <Article article={article}
                          isOpen={this.state.openArticleId == article.id}
                          onClick={this.toggleOpenArticle(article.id)}
-                         closedArticle = {this.toggleOpenArticle(article.id)}
+                         closedArticle = {this.state.isClosed}
                 />
             </li>)
         return (
