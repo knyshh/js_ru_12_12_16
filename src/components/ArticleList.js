@@ -1,14 +1,18 @@
 import React, {PropTypes} from 'react'
 import Article from './Article'
 import Chart from './Chart'
-import toggleOpen from '../decorators/accordeon'
+import toggleOpenArticle from '../decorators/accordeon'
 
-export default class ArticleList extends React.Component {
-    render() {
-        const {articles} = this.props
+function ArticleList(props){
+
+        const {articles,isOpenItem, toggleOpenArticle} = props
         const articleElements = articles.map(article =>
             <li key={article.id}>
-                <Article article={article} />
+                <Article
+                    article={article}
+                    isOpen = {isOpenItem(article.id)}
+                    onClick = {toggleOpenArticle(article.id)}
+                />
             </li>)
         return (
             <div>
@@ -20,7 +24,6 @@ export default class ArticleList extends React.Component {
                 <Chart articles={articles}/>
             </div>
         )
-    }
 }
 
 ArticleList.defaultProps = {
@@ -29,3 +32,6 @@ ArticleList.defaultProps = {
 ArticleList.propTypes = {
     articles: PropTypes.array.isRequired
 }
+
+export default toggleOpenArticle(ArticleList)
+

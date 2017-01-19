@@ -11,7 +11,7 @@ export default class Article extends Component {
     }
 
     render() {
-        const { article, onClick, closedArticle } = this.props
+        const { article, onClick } = this.props
         return (
             <div ref = "container">
                 <h3 onClick = {onClick}>{article.title}</h3>
@@ -22,7 +22,6 @@ export default class Article extends Component {
 
     getBody() {
         if (!this.props.isOpen) return null
-        if (!this.props.closedArticle) return null
         return (
             <section>
                 {this.props.article.text}
