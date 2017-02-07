@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
+import DateRange from './DateRange'
 
-class Filter extends Component {
+class ArticlesSelect extends Component {
     static propTypes = {
-
+        articles: PropTypes.array
     };
 
     state = {
@@ -18,6 +19,7 @@ class Filter extends Component {
         }))
         return (
             <div>
+
                 <Select options={options} value={this.state.selected} onChange={this.handleChange} multi={true}/>
             </div>
         )
@@ -28,4 +30,4 @@ class Filter extends Component {
     })
 }
 
-export default Filter
+export default ArticlesSelect
